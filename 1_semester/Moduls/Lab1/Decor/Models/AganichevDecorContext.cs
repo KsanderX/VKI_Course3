@@ -6,10 +6,10 @@ public partial class AganichevDecorContext : DbContext
 {
     public AganichevDecorContext()
     {
+        Database.EnsureCreated();
     }
 
-    public AganichevDecorContext(DbContextOptions<AganichevDecorContext> options)
-        : base(options)
+    public AganichevDecorContext(DbContextOptions<AganichevDecorContext> options) : base(options)
     {
     }
 
@@ -24,7 +24,8 @@ public partial class AganichevDecorContext : DbContext
     public virtual DbSet<ProductsImport> ProductsImports { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=DBSRV\\vip2024;Database=Aganichev_Decor;TrustServerCertificate=True;Integrated Security=True;");
+        //=> optionsBuilder.UseSqlServer("Server=DBSRV\\vip2024;Database=Aganichev_Decor;TrustServerCertificate=True;Integrated Security=True;");
+        => optionsBuilder.UseSqlServer("Server=PC_Sanya;Database=Aganichev_Decor;TrustServerCertificate=True;Integrated Security=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

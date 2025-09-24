@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Decor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="733">
+    <StackPanel Margin="10">
+            <Border BorderBrush="Black" BorderThickness="1" Height="120">                
+        <ListBox ItemsSource="{Binding ProductsImport}">
+            <Grid Height="120">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <TextBlock>
+                        <Run Text="Type"/>
+                        <Run Text="|"/>
+                        <Run Text="Product name"/>
+                    </TextBlock>
+                    <TextBlock Text="Arc"/>
+                    <TextBlock>
+                         <Run Text="12600.00"/>
+                         <Run Text="(p)"/>
+                    </TextBlock>
 
-    </Grid>
+                    <TextBlock>
+                         <Run Text="1.50"/>
+                         <Run Text="(m)"/>
+                    </TextBlock>
+                </StackPanel>
+                
+                <StackPanel Margin="455,0,-464,0" Grid.Column="1">
+                    <TextBlock>
+                            <Run Text="21300"/>
+                            <Run Text="(p)"/>
+                            <Run Text="Product name"/>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </ListBox>
+       </Border>
+    </StackPanel>
 </Window>

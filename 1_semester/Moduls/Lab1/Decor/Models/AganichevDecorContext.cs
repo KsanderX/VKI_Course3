@@ -6,7 +6,6 @@ public partial class AganichevDecorContext : DbContext
 {
     public AganichevDecorContext()
     {
-        Database.EnsureCreated();
     }
 
     public AganichevDecorContext(DbContextOptions<AganichevDecorContext> options) : base(options)

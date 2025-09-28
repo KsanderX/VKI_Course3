@@ -12,16 +12,17 @@
                 <ListBox x:Name="UsersListBox" BorderThickness="0" Background="Transparent">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="1" Height="112" Width="568">
-                                <Grid  >
+                            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="1" Height="112" Width="560">
+                                <!--<ScrollViewer>-->  
+                                <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="110" />
                                         <ColumnDefinition Width="350*"/>
-                                        <ColumnDefinition Width="120*"/>
+                                        <ColumnDefinition Width="160*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="20*"/>
-                                        <RowDefinition Height="50*"/>
+                                        <RowDefinition Height="65*"/>
                                         <RowDefinition Height="20*"/>
                                     </Grid.RowDefinitions>
                                     <Border BorderBrush="Black" BorderThickness="1"
@@ -30,26 +31,32 @@
                                            Source="{Binding ImagePath}"/>
 
                                     <TextBlock Grid.Column="1" Grid.Row="0" Margin="5 0 0 0 ">
-                                         <Run Text="{Binding UserName}"/>
+                                        <Run Text="Имя пользователя:"/>
+                                        <Run Text="{Binding UserName}"/>
                                     </TextBlock>
 
                                     <TextBlock Grid.Column="2" Grid.Row="0" Margin="5 0 0 0 ">
+                                        <Run Text="Группа крови:"/>                                        
                                         <Run Text="{Binding BloodGroup}"/>
                                     </TextBlock>
 
                                     <TextBlock Margin="5 0 0 0 " Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"
                                                 TextWrapping="Wrap" Width="450" HorizontalAlignment="Left">                         
+                                         <Run Text="Описание профиля:"/>
                                         <Run Text="{Binding ProfileDescription}"/>
                                     </TextBlock>
 
                                     <TextBlock Margin="5 0 0 0 " Grid.Column="1" Grid.Row="2">
+                                         <Run Text="Дата создания:"/>
                                         <Run Text="{Binding CreationDate}"/>
                                     </TextBlock>
 
-                                    <TextBlock Margin="5 0 0 0 " Grid.Column="2" Grid.Row="2">
+                                    <TextBlock Margin="5 0 0 0 " Grid.Column="2" Grid.Row="2" TextWrapping="Wrap">
+                                         <Run Text="Знак зодиака:"/>
                                         <Run Text="{Binding ZodiacSign}"/>
                                     </TextBlock>
-                                 </Grid>                        
+                                 </Grid>  
+                                <!--</ScrollViewer>-->
                              </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

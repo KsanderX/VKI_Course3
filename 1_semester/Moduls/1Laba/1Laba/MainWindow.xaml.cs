@@ -1,13 +1,4 @@
-﻿using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace _1Laba
 {
@@ -49,7 +40,10 @@ namespace _1Laba
                     ImagePath = "F:\\ВКИ\\VKI_Course3\\1_semester\\Moduls\\1Laba\\1Laba\\Image\\Черная пантера.jpg",
                     UserName = "Т'Чалла",
                     BloodGroup = "AB-",
-                    ProfileDescription = "Король Ваканды, Черная Пантера. Обладает сверхчеловеческими способностями благодаря сердечной траве. Лидер technologically advanced нации. И бла бла бла бла бла бла бла блабла бла бла блабла бла бла блабла бла бла блабла бла бла бла",
+                    ProfileDescription = "Король Ваканды, Черная Пантера. Обладает сверхчеловеческими способностями благодаря сердечной траве. Лидер technologically advanced нации." +
+                    " И бла бла бла бла бла бла бла бла " +
+                    "бла бла бла бла бла бла бла бла бла бла бла блабла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла" +
+                    " бла бла бла бла бла бла бла бла бла бла бла бла бла бла",
                     CreationDate = "25.08.2024",
                     ZodiacSign = "Скорпион"
                 }
@@ -61,11 +55,11 @@ namespace _1Laba
 
     public class UserProfile
     {
-        public string ImagePath { get; set; }
-        public string UserName { get; set; }
-        public string BloodGroup { get; set; }
-        public string ProfileDescription { get; set; }
-        public string CreationDate { get; set; }
-        public string ZodiacSign { get; set; }
+        public string? ImagePath { get; set; }
+        public string? UserName { get; set; }
+        public string? BloodGroup { get; set; }
+        public string? ProfileDescription { get; set; }
+        public string? CreationDate { get; set; }
+        public string? ZodiacSign { get; set; }
     }
 }

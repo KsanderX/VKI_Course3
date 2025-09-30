@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="png" href="Icon.png">
+    <title>Список дел</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Список дел</h1>
+        <div class="input-group">
+            <input type="text" id="new-task" placeholder="Новая задача">
+            <button class="add_action" id="add-task">Создать</button>
+            <button class="add_action2" id="clear-all">Очистить всё</button>
+        </div>
+
+        <div class="filters">
+            <a href="#" class="filter-link active" data-filter="all">Все</a>
+            <a href="#" class="filter-link" data-filter="done">Сделанные</a>
+            <a href="#" class="filter-link" data-filter="not-done">Несделанные</a>
+            <select id="sort-tasks">
+                <option value="default">По умолчанию</option>
+                <option value="name">По названию</option>
+                <option value="date">По дате</option>
+            </select>
+        </div>
+
+        <ol id="task-list"></ol>
+    </div>
+    <footer>Copyright &copy; 2025</footer>
+    <script src="script.js"></script>
+</body>
+</html>

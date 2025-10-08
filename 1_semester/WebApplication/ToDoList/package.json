@@ -1,14 +1,14 @@
 {
-  "name": "todo-app",
+  "name": "todolist",
   "version": "1.0.0",
-  "description": "Server-side Todo List",
-  "main": "Server/server.js",
+  "description": "To-Do List",
+  "main": "server/server.js",
   "scripts": {
-    "start": "node Server/server.js",
-    "dev": "nodemon Server/server.js",
-    "install-deps": "npm install"
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js"
   },
   "dependencies": {
+    "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "sqlite": "^5.1.1",

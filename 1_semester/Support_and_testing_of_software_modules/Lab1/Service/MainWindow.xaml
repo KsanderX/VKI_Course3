@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Service"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <Border Background="#FFD4FFC8" CornerRadius="14" Padding="32" Margin="189,31,188,17">
+            <StackPanel>
+                <TextBlock Text="Авторизация" FontSize="30" HorizontalAlignment="Center"/>
+                <TextBox HorizontalAlignment="Center" Width="200" Height="30" Margin="0 30 0 0"/>
+                <TextBox HorizontalAlignment="Center" Width="200" Height="30" Margin="0 20 0 0"/>
+                <Button HorizontalAlignment="Center" Margin=" 0 20 0 0" Width="100"
+                        Content="Войти" Height="30" FontSize="20"/>
+            </StackPanel>
+       </Border>
     </Grid>
 </Window>

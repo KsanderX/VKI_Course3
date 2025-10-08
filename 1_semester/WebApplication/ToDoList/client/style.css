@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1f1f1f, #121212);
+    font-family: 'Roboto', sans-serif;
+    color: #e0e0e0;
+}
+
+.container {
+    width: 100%;
+    min-width: 400px;
+    max-width: 500px;
+    background: #1e1e1e;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Заголовок */
+h1 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* Ввод и кнопки */
+.input-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    flex: 1 1 200px;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #2c2c2c;
+    color: #ffffff;
+}
+
+button {
+    border: none;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+button.add_action {
+    background: #2e7d32;
+    color: white;
+}
+button.add_action:hover {
+    background: #43a047;
+}
+
+button.add_action2 {
+    background: #b71c1c;
+    color: white;
+}
+button.add_action2:hover {
+    background: #e53935;
+}
+
+/* Список */
+ol {
+    padding: 0;
+    list-style: none;
+    max-height: 60vh;
+    overflow-y: auto;
+    margin: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    background: #2a2a2a;
+    margin: 8px 0;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+li:hover {
+    background: #333333;
+}
+
+/* Чекбокс */
+input[type="checkbox"] {
+    accent-color: #43a047;
+    transform: scale(1.2);
+}
+
+/* Текст задачи */
+span {
+    flex: 1;
+    margin: 0 10px;
+    outline: none;
+}
+span.done {
+    text-decoration: line-through;
+    color: #888;
+}
+
+/* Дата */
+sub {
+    font-size: 0.75em;
+    color: #aaaaaa;
+    margin-left: 10px;
+}
+
+/* Кнопка удаления */
+button.delete-btn {
+    background: transparent;
+    color: #e53935;
+    font-size: 18px;
+}
+button.delete-btn:hover {
+    color: #ff6b6b;
+}
+
+/* Фильтры */
+.filters {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.filter-link {
+    color: #aaa;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.filter-link.active {
+    background: #43a047;
+    color: #fff;
+}
+
+select#sort-tasks {
+    padding: 6px;
+    border-radius: 6px;
+    border: none;
+    background: #2c2c2c;
+    color: #fff;
+}
+
+footer {
+    position: fixed;
+    color: #e0dfdf;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #e0dfdf;
+}

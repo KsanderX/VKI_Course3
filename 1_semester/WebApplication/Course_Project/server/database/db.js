@@ -51,6 +51,13 @@ const initDb = async () => {
             ID integer primary key autoincrement,
             Name_status text not null
         )`)
+
+    await db.exec(`
+        CREATE TABLE IF NOT EXISTS tokens (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            userId INTEGER NOT NULL,
+            token TEXT NOT NULL
+        )`);
 };
 
 const getDb = () => db;

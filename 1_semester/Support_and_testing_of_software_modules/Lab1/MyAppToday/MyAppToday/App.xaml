@@ -1,7 +1,7 @@
-﻿<Application x:Class="Service.App"
+﻿<Application x:Class="MyAppToday.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Service">
+             xmlns:local="clr-namespace:MyAppToday">
     <Application.Resources>
          
     </Application.Resources>

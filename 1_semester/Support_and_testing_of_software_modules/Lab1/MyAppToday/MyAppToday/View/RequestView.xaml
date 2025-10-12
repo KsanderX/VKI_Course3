@@ -1,0 +1,38 @@
+﻿<Window x:Class="MyAppToday.View.RequestView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyAppToday.View"
+        mc:Ignorable="d"
+        Title="RequestView" Height="500" Width="600"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock FontSize="25" HorizontalAlignment="Center" Text="Сиписок заявок" Grid.ColumnSpan="2"/>
+        <ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Requests}" SelectedItem="{Binding SelectedRequest}" SelectedValuePath="Id" DisplayMemberPath="Id" FontSize="20"/>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <Label FontSize="18" Content="Id заявки:"/>
+            <TextBlock Text="{Binding SelectedRequest.Id}" Height="30" FontSize="18" Margin="5 0 0 0"/>
+            <Label FontSize="18" Content="Клиент:"/>
+            <TextBlock Text="{Binding SelectedRequest.Client.Login}" Height="30" FontSize="18" Margin="5 0 0 0"/>
+            <Label FontSize="18" Content="Проблема клиента:"/>
+            <TextBlock Text="{Binding SelectedRequest.ProblemDescription}" Height="30" Margin="5 0 0 0" FontSize="18"/>
+            <Label FontSize="18" Content="Название оборудования:"/>
+            <TextBlock Text="{Binding SelectedRequest.Equipment.Name}" Height="30" FontSize="18" Margin="5 0 0 0"/>
+            <Label FontSize="18" Content="Статус:"/>
+            <TextBlock Text="{Binding SelectedRequest.Status}" Height="30" FontSize="18" Margin="5 0 0 0"/>
+            <Button Height="30" Content="Узнать ответственных за выполнение" Margin="5,15,5,0" Click="btnCheckAssignMasters"/>
+            <Button Height="30" Content="Назад" Margin="5 10 5 0" Click="btnOpenOperatorView"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -39,7 +39,7 @@ namespace MyAppToday.View
                 {
                     foreach (Master master in masters)
                     {
-                        MessageBox.Show(master.Login);
+                        MessageBox.Show(master.Name);
                     }
                 }
             }

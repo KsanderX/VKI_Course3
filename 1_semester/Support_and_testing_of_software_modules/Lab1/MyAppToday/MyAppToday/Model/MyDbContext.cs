@@ -24,18 +24,18 @@ namespace MyAppToday.Model
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Client>().HasData(
-                new Client { Id = 1, Login = "Sanya", Password = "qwer" },
-                new Client { Id = 2, Login = "Nina", Password = "123" },
-                new Client { Id = 3, Login = "Petr", Password = "456" }
+                new Client { Id = 1, Name="Sanya", Login = "Sanya", Password = "qwer" },
+                new Client { Id = 2, Name="Nina", Login = "Nina", Password = "123" },
+                new Client { Id = 3, Name="Petr", Login = "Petr", Password = "456" }
                 );
 
             modelBuilder.Entity<Master>().HasData(
-               new Master { Id = 1, Login = "Alex", Password = "zxcv" },
-               new Master { Id = 2, Login = "Oleg", Password = "312" }
+               new Master { Id = 1, Name="Alex", Login = "Alex", Password = "zxcv" },
+               new Master { Id = 2, Name="Oleg", Login = "Oleg", Password = "312" }
                );
 
             modelBuilder.Entity<Operator>().HasData(
-              new Operator { Id = 1, Login = "Nastya", Password = "anst" }
+              new Operator { Id = 1, Name="Nastya", Login = "Nastya1", Password = "anst" }
               );
 
             modelBuilder.Entity<Equipment>().HasData(

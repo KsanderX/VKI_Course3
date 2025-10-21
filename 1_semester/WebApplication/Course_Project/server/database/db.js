@@ -6,7 +6,7 @@ let db;
 const initDb = async () => {
     if (!db) {
         db = await open({
-            filename: 'database.db',
+            filename: '/database.db',
             driver: sqlite3.Database
         })
     }

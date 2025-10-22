@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 namespace Lab2_Module2.Models;
 
 public partial class Product

@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab2_Module2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="700" Width="1500">
+    <StackPanel Margin="20">
+        <ListBox x:Name="BoxEquipment" SelectionChanged="BoxEquipment_SelectionChanged"/>
+    </StackPanel>
 </Window>

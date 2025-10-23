@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="700" Width="1500">
+        <ScrollViewer>           
     <StackPanel Margin="20">
-        <ListBox x:Name="BoxEquipment" SelectionChanged="BoxEquipment_SelectionChanged"/>
+            <ListBox x:Name="BoxEquipment" SelectionChanged="BoxEquipment_SelectionChanged"/>
     </StackPanel>
+        </ScrollViewer>
 </Window>

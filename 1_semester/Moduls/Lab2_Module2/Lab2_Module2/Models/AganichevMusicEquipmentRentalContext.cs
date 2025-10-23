@@ -36,8 +36,8 @@ public partial class AganichevMusicEquipmentRentalContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-      //=> optionsBuilder.UseSqlServer("Server=DBSRV\\vip2024;Database=Aganichev_MusicEquipmentRental;TrustServerCertificate=True;Integrated Security=True;");
-        => optionsBuilder.UseSqlServer("Server=PC_SANYA;Database=Aganichev_MusicEquipmentRental;TrustServerCertificate=True;Integrated Security=True;");
+      => optionsBuilder.UseSqlServer("Server=DBSRV\\vip2024;Database=Aganichev_MusicEquipmentRental;TrustServerCertificate=True;Integrated Security=True;");
+      //=> optionsBuilder.UseSqlServer("Server=PC_SANYA;Database=Aganichev_MusicEquipmentRental;TrustServerCertificate=True;Integrated Security=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

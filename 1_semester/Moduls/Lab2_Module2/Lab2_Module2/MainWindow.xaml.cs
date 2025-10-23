@@ -19,9 +19,13 @@ namespace Lab2_Module2
                                 .Include(p => p.FkManufacturerNavigation)
                                 .Include(p => p.FkSupplierNavigation)
                                 .ToList();
-            
+
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+
+            string photos = "Photos";
+
             foreach (var item in allProducts)
-            {
+            {               
                 EquipmentItemController equipment = new(item);
                 BoxEquipment.Items.Add(equipment);
             }

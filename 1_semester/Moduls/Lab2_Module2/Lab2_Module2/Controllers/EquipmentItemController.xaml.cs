@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using Lab2_Module2.Models;
 namespace Lab2_Module2.Controllers
 {
@@ -13,6 +12,8 @@ namespace Lab2_Module2.Controllers
             InitializeComponent();
 
             DataContext = products;
+
+
         }
     }
 }

@@ -7,6 +7,7 @@ public partial class AganichevMusicEquipmentRentalContext : DbContext
     public AganichevMusicEquipmentRentalContext()
     {
         Database.EnsureCreated();
+        //   Database.EnsureDeleted();
     }
 
     public AganichevMusicEquipmentRentalContext(DbContextOptions<AganichevMusicEquipmentRentalContext> options)

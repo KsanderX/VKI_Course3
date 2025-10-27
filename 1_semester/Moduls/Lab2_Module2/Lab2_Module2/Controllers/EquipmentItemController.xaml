@@ -70,7 +70,8 @@
                         Margin="10" Height="243">
                     <TextBlock FontSize="20"
                                VerticalAlignment="Center"
-                               HorizontalAlignment="Center">
+                               HorizontalAlignment="Center"
+                               x:Name="DiscountTextBlock">
                          <Run Text="{Binding Discount}"/>
                          <Run Text="%"/>
                     </TextBlock>

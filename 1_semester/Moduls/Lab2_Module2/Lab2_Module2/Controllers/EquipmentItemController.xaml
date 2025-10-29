@@ -43,14 +43,18 @@
                 </TextBlock>
 
                 <TextBlock FontSize="20" Margin="5 10 0 0">
-                    <Run Text="Единица оборудования:"/>
-                    <Run Text="{Binding NumberUnits}"/>
+                    <Run Text="Единица аренды:"/>
+                    <Run Text="{Binding NumberUnits}" Name="RunNumberUnits"/>
+                    <Run Text="количество"/>
                 </TextBlock>
 
-                <TextBlock FontSize="20" Margin="5 10 0 0">
+                <ScrollViewer Height="130">                        
+                <TextBlock FontSize="20" Margin="5 10 0 0" Width="670"
+                           TextWrapping="Wrap" TextAlignment="Justify">
                     <Run Text="Описание оборудования:"/>
-                    <Run Text="{Binding Description}"/>
+                    <Run Text="{Binding Description}" />
                 </TextBlock>
+                </ScrollViewer>
             </StackPanel>
             </Border>
 
@@ -60,7 +64,8 @@
                         Margin="10"  Height="50">
                     <TextBlock FontSize="20">
                         <Run Text="Цена аренды:"/>
-                        <Run Text="{Binding Price}"/>
+                        <Run Text="{Binding Price}" Name="RunPrice"/>
+                        <Run Name="RunNewPrice"/>
                         <Run Text="(P)"/>
                     </TextBlock>
                 </Border>
@@ -68,7 +73,7 @@
             <StackPanel Grid.Column="2" Grid.Row="1">
                 <Border BorderBrush="Black" BorderThickness="2" 
                         Margin="10" Height="243">
-                    <TextBlock FontSize="20"
+                    <TextBlock FontSize="30"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"
                                x:Name="DiscountTextBlock">

@@ -1,14 +1,34 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
+using Lab2_Module2.Controllers;
+using Lab2_Module2.Models;
+using Lab2_Module2.Views;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Lab2_Module2
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
-    }
+        private readonly IServiceProvider _service;
 
+        public App()
+        {
+            ServiceCollection services = new();
+
+            services.AddTransient<MainWindow>();
+            services.AddTransient<AutorizationView>();
+            services.AddTransient<RegistrationView>();
+
+            services.AddTransient<EquipmentItemController>();
+
+            services.AddDbContext<AganichevMusicEquipmentRentalContext>();
+
+            _service = services.BuildServiceProvider();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            var view = _service.GetRequiredService<AutorizationView>();
+            view.Show();
+        }
+    }
 }

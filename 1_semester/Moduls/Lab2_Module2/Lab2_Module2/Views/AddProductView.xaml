@@ -1,15 +1,13 @@
-﻿<Window x:Class="Lab2_Module2.MainWindow"
+﻿<Window x:Class="Lab2_Module2.Views.AddProductView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Lab2_Module2"
+        xmlns:local="clr-namespace:Lab2_Module2.Views"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="700" Width="1480">
-        <ScrollViewer>           
-    <StackPanel Margin="20">
-            <ListBox x:Name="BoxEquipment" SelectionChanged="BoxEquipment_SelectionChanged"/>
-    </StackPanel>
-        </ScrollViewer>
+        Title="AddProductView" Height="450" Width="800">
+    <Grid>
+        
+    </Grid>
 </Window>

@@ -14,9 +14,11 @@ namespace Lab2_Module2
         {
             ServiceCollection services = new();
 
-            services.AddTransient<MainWindow>();
             services.AddTransient<AutorizationView>();
             services.AddTransient<RegistrationView>();
+
+            services.AddTransient<MainWindow>();
+            services.AddTransient<AddProductView>();
 
             services.AddTransient<EquipmentItemController>();
 

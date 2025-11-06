@@ -33,31 +33,52 @@ namespace Lab2_Module2.Views
         }
         private void btnAuth_Click(object sender, RoutedEventArgs e)
         {
-            string login = tbLogin.Text;
-            string password = tbPassword.Text;
-
-            bool resultAuth = Auth(login, password);
-
-            if (resultAuth)
+            try
             {
-                if (CurrentUser.FkRole == 1)
+                string login = tbLogin.Text; 
+                string password = tbPassword.Text; 
+
+                if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password)) // 
                 {
-                    var adminView = _serviceProvider.GetRequiredService<MainWindow>();
-                    this.Close();
-                    adminView.Show();
+                    MessageBox.Show("Пожалуйста, введите логин и пароль.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return; 
                 }
-                else if (CurrentUser.FkRole == 2)
+
+                bool resultAuth = Auth(login, password); 
+
+                if (resultAuth) 
                 {
-                    var adminView = _serviceProvider.GetRequiredService<MainWindow>();
-                    this.Close();
-                    adminView.Show();
+                    if (CurrentUser.FkRole == 1)
+                    {
+                        var adminView = _serviceProvider.GetRequiredService<MainWindow>();
+                        this.Close();
+                        adminView.Show();
+                    }
+                    else if (CurrentUser.FkRole == 2) 
+                    {
+                        var adminView = _serviceProvider.GetRequiredService<MainWindow>();
+                        this.Close();
+                        adminView.Show();
+                    }
+                    else if (CurrentUser.FkRole == 3)  
+                    {
+                        var adminView = _serviceProvider.GetRequiredService<MainWindow>();
+                        this.Close();
+                        adminView.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("У вашей учетной записи нет прав для доступа к этому разделу.", "Ошибка доступа", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
-                else if (CurrentUser.FkRole == 3)
+                else
                 {
-                    var adminView = _serviceProvider.GetRequiredService<MainWindow>();
-                    this.Close();
-                    adminView.Show();
+                    MessageBox.Show("Неверный логин или пароль.", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла критическая ошибка при подключении к базе данных:\n{ex.Message}", "Ошибка подключения", MessageBoxButton.OK, MessageBoxImage.Stop);
             }
         }
 

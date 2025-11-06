@@ -110,5 +110,12 @@ namespace Lab2_Module2
             this.Close();
             authView.Show();
         }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            var addProduct = _serviceProvider.GetRequiredService<AddProductView>();
+            this.Close();
+            addProduct.Show();
+        }
     }    
 }

@@ -1,0 +1,85 @@
+if (string.IsNullOrWhiteSpace(tbArticle.Text) || string.IsNullOrWhiteSpace(tbName.Text) ||
+        string.IsNullOrWhiteSpace(tbPrice.Text) || string.IsNullOrWhiteSpace(tbDiscount.Text) ||
+        string.IsNullOrWhiteSpace(tbNumberUnits.Text) || string.IsNullOrWhiteSpace(tbRentalUnit.Text) ||
+        string.IsNullOrWhiteSpace(tbDescription.Text) || cbEquipmentType.SelectedItem == null ||
+        cbManufacturer.SelectedItem == null || cbSupplier.SelectedItem == null)
+    {
+        MessageBox.Show("Пожалуйста, заполните все обязательные поля.",
+            "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Error);
+        return; 
+    }
+
+    double price, discount, numberUnits;
+    if (!double.TryParse(tbPrice.Text, out price)) { MessageBox.Show("Цена должна быть числом."); return; }
+    if (!double.TryParse(tbDiscount.Text, out discount)) { MessageBox.Show("Скидка должна быть числом."); return; }
+    if (!double.TryParse(tbNumberUnits.Text, out numberUnits)) { MessageBox.Show("Кол-во должно быть числом."); return; }
+
+    try
+    {
+        // ==============================================================
+        // --- 2. ОБРАБОТКА ФОТО (КОД ДЛЯ КОПИРОВАНИЯ) ---
+        // ==============================================================
+        
+        string photoFileName = null; // Имя файла, которое пойдет в БД
+
+        // Проверяем, выбрал ли пользователь фото
+        if (!string.IsNullOrWhiteSpace(_selectedPhotoFullPath))
+        {
+            // 1. Определяем папку назначения (Photos)
+            // AppDomain.CurrentDomain.BaseDirectory - это .../bin/Debug/
+            string photosDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Photos");
+
+            // 2. Создаем папку, если ее нет
+            if (!Directory.Exists(photosDirectory))
+            {
+                Directory.CreateDirectory(photosDirectory);
+            }
+
+            // 3. Получаем имя файла (например, "delorean...jpg")
+            string originalFileName = Path.GetFileName(_selectedPhotoFullPath);
+            
+            // 4. Полный путь, куда будем копировать
+            string destinationPath = Path.Combine(photosDirectory, originalFileName);
+
+            // 5. КОПИРУЕМ ФАЙЛ
+            // (из C:\Users\Desktop\delorean...jpg
+            // в ...\bin\Debug\Photos\delorean...jpg)
+            File.Copy(_selectedPhotoFullPath, destinationPath, true); // true = перезаписать, если есть
+
+            // 6. Сохраняем только имя файла
+            photoFileName = originalFileName;
+        }
+        // ==============================================================
+
+        // --- 3. СОЗДАНИЕ И СОХРАНЕНИЕ ПРОДУКТА ---
+        Product newProduct = new Product
+        {
+            Id = (_context.Products.Any() ? _context.Products.Max(p => p.Id) : 0) + 1,
+            Article = tbArticle.Text,
+            EquipmentName = tbName.Text,
+            Price = price,
+            Discount = discount,
+            NumberUnits = numberUnits,
+            RentalUnit = tbRentalUnit.Text,
+            Description = tbDescription.Text,
+            FkEquipmentType = (int)cbEquipmentType.SelectedValue,
+            FkManufacturer = (int)cbManufacturer.SelectedValue,
+            FkSupplier = (int)cbSupplier.SelectedValue,
+            Photo = photoFileName // Сохраняем имя файла (или null) в БД
+        };
+
+        _context.Products.Add(newProduct);
+        _context.SaveChanges();
+        MessageBox.Show("Новый товар успешно добавлен!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+
+        // --- 4. ПРАВИЛЬНОЕ ЗАКРЫТИЕ ОКНА ---
+        // (Этот код правильнее, чем ваш)
+        this.DialogResult = true;
+        this.Close(); 
+    }
+    catch (Exception ex)
+    {
+        // Если копирование не удалось (например, нет прав), мы увидим ошибку
+        MessageBox.Show("Ошибка при сохранении продукта: " + ex.Message,
+            "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+    }

@@ -41,7 +41,7 @@ namespace Lab2_Module2
             {
                 if (string.IsNullOrWhiteSpace(item.Photo))
                 {
-                    item.Photo = Path.Combine(basePath, photosFolder);
+                    item.Photo = Path.Combine(basePath, photosFolder, "picture.png");
                 }
                 else
                 {
@@ -115,7 +115,7 @@ namespace Lab2_Module2
         {
             var addProduct = _serviceProvider.GetRequiredService<AddProductView>();
             this.Close();
-            addProduct.Show();
+            addProduct.Show();           
         }
     }    
 }

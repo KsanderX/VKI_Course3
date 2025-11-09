@@ -119,7 +119,11 @@ namespace Lab2_Module2.Views
 
 		private void btCancel_Click(object sender, RoutedEventArgs e)
 		{
-			MessageBox.Show("Выход из добавления товара", "Отмена", MessageBoxButton.OK, MessageBoxImage.Information);
+			var result = MessageBox.Show("Вы уверены, что хотите выйти? \nВсе несохраненные данные будут утеряны!", "Отмена", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+			if (result == MessageBoxResult.Cancel) 
+			{
+				return;
+			}
 			var productsView = _serviceProvider.GetRequiredService<MainWindow>();
 			this.Close();
 			productsView.Show();
@@ -127,7 +131,12 @@ namespace Lab2_Module2.Views
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-			var productView = _serviceProvider.GetRequiredService<MainWindow>();
+            var result = MessageBox.Show("Вы уверены, что хотите выйти? \nВсе несохраненные данные будут утеряны!", "Отмена", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Cancel)
+            {
+                return;
+            }
+            var productView = _serviceProvider.GetRequiredService<MainWindow>();
 			this.Close();
 			productView.Show();
         }

@@ -11,8 +11,8 @@
         
     <Grid Margin="15">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition MaxWidth="200"/>
+            <ColumnDefinition MaxWidth="450"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

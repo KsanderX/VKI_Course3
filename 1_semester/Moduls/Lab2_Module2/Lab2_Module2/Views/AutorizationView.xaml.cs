@@ -38,7 +38,7 @@ namespace Lab2_Module2.Views
                 string login = tbLogin.Text; 
                 string password = tbPassword.Text; 
 
-                if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password)) // 
+                if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password)) 
                 {
                     MessageBox.Show("Пожалуйста, введите логин и пароль.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return; 

@@ -1,5 +1,4 @@
-﻿
-namespace Lab2_Module2.Models;
+﻿namespace Lab2_Module2.Models;
 
 public partial class Product
 {

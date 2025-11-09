@@ -70,9 +70,7 @@ namespace Lab2_Module2
                 return;
             }
             var result = MessageBox.Show($"Вы уверены, что хотите удалить этот товар?\n\n{productToDelete.EquipmentName}",
-                                         "Подтверждение удаления",
-                                         MessageBoxButton.YesNo,
-                                         MessageBoxImage.Question);
+                                         "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (result == MessageBoxResult.No)
             {
@@ -106,6 +104,11 @@ namespace Lab2_Module2
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
+            var result = MessageBox.Show("Вы уверены, что хотите выйти из аккаунта?" , "Отмена", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Cancel)
+            {
+                return;
+            }
             var authView = _serviceProvider.GetRequiredService<AutorizationView>();
             this.Close();
             authView.Show();

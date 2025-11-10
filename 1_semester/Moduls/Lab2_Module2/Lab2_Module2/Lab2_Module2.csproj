@@ -13,7 +13,6 @@
     <None Remove="Photos\2.jpg" />
     <None Remove="Photos\3.jpg" />
     <None Remove="Photos\4.jpg" />
-    <None Remove="Photos\delorean-from-future-4k-ha-2048x1152.jpg" />
     <None Remove="Photos\picture.png" />
   </ItemGroup>
 
@@ -28,9 +27,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Photos\4.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\delorean-from-future-4k-ha-2048x1152.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Photos\picture.png">

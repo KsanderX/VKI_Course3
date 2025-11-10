@@ -19,7 +19,7 @@
             </ScrollViewer>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,617,0,0" Width="754">            
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="754">            
         <Button x:Name="btnDelete" Content="Удалить товар"
                 Margin="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="30" Click="btnDelete_Click"/>
         <Button x:Name="btnAdd" Content="Добавить товар"

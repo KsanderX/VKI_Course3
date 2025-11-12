@@ -108,8 +108,10 @@ namespace Lab2_Module2.Views
 				_context.SaveChanges();
 				MessageBox.Show("Новый товар успешно добавлен!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
 
-				this.Close();
-			}
+                var productsView = _serviceProvider.GetRequiredService<ListProduct>();
+                this.Close();
+                productsView.Show();
+            }
 			catch (Exception ex)
 			{
 				MessageBox.Show("Ошибка при сохранении продукта: " + ex.Message,
@@ -124,7 +126,7 @@ namespace Lab2_Module2.Views
 			{
 				return;
 			}
-			var productsView = _serviceProvider.GetRequiredService<MainWindow>();
+			var productsView = _serviceProvider.GetRequiredService<ListProduct>();
 			this.Close();
 			productsView.Show();
 		}
@@ -136,7 +138,7 @@ namespace Lab2_Module2.Views
             {
                 return;
             }
-            var productView = _serviceProvider.GetRequiredService<MainWindow>();
+            var productView = _serviceProvider.GetRequiredService<ListProduct>();
 			this.Close();
 			productView.Show();
         }

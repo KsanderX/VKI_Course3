@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Lab2_Module2.Views"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="AutorizationView" Height="450" Width="800">
+        Title="Окно авторизации" Height="450" Width="800">
     <StackPanel Width="400">
         <TextBlock Text="Авторизация" FontSize="26" HorizontalAlignment="Center"/>
         <TextBlock Text="Логин" FontSize="20" />

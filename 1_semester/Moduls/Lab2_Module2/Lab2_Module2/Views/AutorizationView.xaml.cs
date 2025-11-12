@@ -50,19 +50,19 @@ namespace Lab2_Module2.Views
                 {
                     if (CurrentUser.FkRole == 1)
                     {
-                        var adminView = _serviceProvider.GetRequiredService<MainWindow>();
+                        var adminView = _serviceProvider.GetRequiredService<ListProduct>();
                         this.Close();
                         adminView.Show();
                     }
                     else if (CurrentUser.FkRole == 2) 
                     {
-                        var adminView = _serviceProvider.GetRequiredService<MainWindow>();
+                        var adminView = _serviceProvider.GetRequiredService<ListProduct>();
                         this.Close();
                         adminView.Show();
                     }
                     else if (CurrentUser.FkRole == 3)  
                     {
-                        var adminView = _serviceProvider.GetRequiredService<MainWindow>();
+                        var adminView = _serviceProvider.GetRequiredService<ListProduct>();
                         this.Close();
                         adminView.Show();
                     }
@@ -91,7 +91,7 @@ namespace Lab2_Module2.Views
 
         private void btnAuthGuest_Click(object sender, RoutedEventArgs e)
         {
-            var productView = _serviceProvider.GetRequiredService<MainWindow>();
+            var productView = _serviceProvider.GetRequiredService<ListProduct>();
             this.Close();
             productView.Show();
         }

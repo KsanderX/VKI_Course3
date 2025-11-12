@@ -17,7 +17,7 @@ namespace Lab2_Module2
             services.AddTransient<AutorizationView>();
             services.AddTransient<RegistrationView>();
 
-            services.AddTransient<MainWindow>();
+            services.AddTransient<ListProduct>();
             services.AddTransient<AddProductView>();
 
             services.AddTransient<EquipmentItemController>();

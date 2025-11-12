@@ -11,12 +11,12 @@ namespace Lab2_Module2
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ListProduct : Window
     {
         private IServiceProvider _serviceProvider;
         AganichevMusicEquipmentRentalContext _context = new AganichevMusicEquipmentRentalContext();
 
-        public MainWindow(AganichevMusicEquipmentRentalContext context, IServiceProvider service)
+        public ListProduct(AganichevMusicEquipmentRentalContext context, IServiceProvider service)
         {
             InitializeComponent();
             _serviceProvider = service;

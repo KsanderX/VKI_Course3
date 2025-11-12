@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Lab2_Module2.Views"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="AddProductView" Height="540" Width="600">
+        Title="Добавление товара" Height="540" Width="600">
     <ScrollViewer MaxHeight="540">
         
     <Grid Margin="15">

@@ -19,12 +19,13 @@ namespace Demo_Shoes
 
             services.AddTransient<AuthorizationView>();
             services.AddTransient<ProductView>();
+
+            _service = services.BuildServiceProvider();
         }
         protected override void OnStartup(StartupEventArgs e)
         {
             var mainWindow = _service.GetRequiredService<AuthorizationView>();
             mainWindow.Show();
-            base.OnStartup(e);
         }
     }
 }   

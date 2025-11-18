@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Demo_Shoes.Models;
+﻿namespace Demo_Shoes.Models;
 
 public partial class PickUpPoint
 {

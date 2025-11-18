@@ -5,12 +5,68 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Demo_Shoes.Controllers"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="503*"/>
-            <ColumnDefinition Width="297*"/>
-        </Grid.ColumnDefinitions>
+             d:DesignHeight="230" d:DesignWidth="1000">
+    <Border BorderBrush="Black" BorderThickness="2">
+        <Grid  Margin=" 10 5 5 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
 
-    </Grid>
+            <!--левый компонент-->
+            <StackPanel Grid.Column="0">
+                <Image Source="{Binding Photo}"
+				 MaxHeight="200" MaxWidth="300"/>
+            </StackPanel>
+
+            <!--центральный компонент-->
+            <StackPanel Grid.Column="1" MinWidth="00">
+                <TextBlock FontSize="25 " FontWeight="Black">
+			  <Run Text="{Binding FkProductCategoryNavigation.Name}"/>
+			  <Run Text=" | "/>
+			  <Run Text="{Binding FkProductNameNavigation.Name}"/>
+                </TextBlock>
+
+                <TextBlock FontSize="20">
+			 <Run Text="Описание товара:"/>
+			 <Run Text="{Binding Description}"/>
+                </TextBlock>
+
+                <TextBlock FontSize="20">
+				 <Run Text="Производитель:"/>
+				 <Run Text="{Binding FkManufacturerNavigation.Name}"/>
+                </TextBlock>
+
+                <TextBlock FontSize="20">
+				 <Run Text="Поставщик:"/>
+				 <Run Text="{Binding FkSupplierNavigation.Name}"/>
+                </TextBlock>
+
+                <TextBlock FontSize="20">
+				<Run Text="Цена:"/>
+				<Run  Name="RunPrice" Text="{Binding Price}"/>
+				<Run  Name="RunNewPrice"/>
+				<Run />
+                </TextBlock>
+
+                <TextBlock FontSize="20">
+				 <Run Text="Единица измерения:"/>
+				 <Run Text="{Binding FkUnitNavigation.Name}"/>
+                </TextBlock>
+
+                <TextBlock FontSize="20" Name="BoxCount">
+				 <Run Text="Количество на складе:"/>
+				 <Run Text="{Binding CountOnStorage}"/>
+                </TextBlock>
+            </StackPanel>
+
+            <!--правый компонент-->
+            <Border Grid.Column="2" BorderBrush="Black" x:Name="BorderDiscount" BorderThickness="2" >
+                <TextBlock Text="{Binding Discount}"  FontSize="24"
+				 VerticalAlignment="Center"
+				 HorizontalAlignment="Center"/>
+            </Border>
+        </Grid>
+    </Border>
 </UserControl>

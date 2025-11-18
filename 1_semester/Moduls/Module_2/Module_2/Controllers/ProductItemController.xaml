@@ -57,7 +57,7 @@
 
                 <TextBlock FontSize="20" Name="BoxCount">
 							 <Run Text="Количество на складе:"/>
-							 <Run Text="{Binding Count}"/>
+							 <Run Text="{Binding CountOnStorage}"/>
                 </TextBlock>
             </StackPanel>
 

@@ -6,8 +6,22 @@
         xmlns:local="clr-namespace:Demo_Shoes.VIews"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Авторизация" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Авторизация" Height="300" Width="500">
+    <StackPanel HorizontalAlignment="Center" Margin="0,94,0,0">
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBox Name="boxLogin" Text="94d5ous@gmail.com"  Width="120"/>
+            <Label Content="Логин" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"  Margin="5">
+            <TextBox Name="boxPass" Width="120" Text="uzWC67" />
+            <Label Content="Пароль" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Войти" Width="100" x:Name="btnAuth" Click="btnAuth_Click"/>
+            <Button Content="Войти как гость"  x:Name="btnAuthGuest"
+                 Width="100" Click="btnAuthGuest_Click" Margin="5 0 0 0"/>
+        </StackPanel>
+
+    </StackPanel>
 </Window>

@@ -13,25 +13,44 @@ namespace Demo_Shoes.Controllers
         public ProductItemController()
         {
             InitializeComponent();
-            //Product product = DataContext as Product;
+            InitializeComponent();
 
-            //if (product.Discount > 15)
-            //{
-            //    BorderDiscount.Background = new SolidColorBrush(Color.FromRgb(46, 139, 87));
-            //}
+            this.DataContextChanged += UserControl_DataContextChanged;
+        }
 
-            //if (product.Discount > 0)
-            //{
-            //    RunPrice.Foreground = new SolidColorBrush(Colors.Red);
-            //    RunPrice.TextDecorations.Add(TextDecorations.Strikethrough);
+        private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (DataContext is Product product)
+            {
+                MainBorder.Background = Brushes.White;
+                RunPrice.TextDecorations = null;
+                RunPrice.Foreground = Brushes.Black;
+                RunNewPrice.Text = "";
 
-            //    RunNewPrice.Text = $"{product.Price - (product.Price * product.Discount) / 100}";
+                if (product.Discount > 15)
+                {
+                    var brush = new BrushConverter().ConvertFrom("#2E8B57") as SolidColorBrush;
+                    BorderDiscount.Background = brush;
+                }
 
-            //    if (product.CountOnStorage == 0)
-            //    {
-            //        BoxCount.Foreground = new SolidColorBrush(Colors.Blue);
-            //    }
-            //}
+                if (product.Discount > 0 && product.Price != null)
+                {
+                    RunPrice.TextDecorations = TextDecorations.Strikethrough;
+                    RunPrice.Foreground = Brushes.Red;
+
+                    double oldPrice = product.Price.Value;
+                    double discount = product.Discount.Value;
+                    double newPrice = oldPrice - (oldPrice * discount / 100);
+
+                    RunNewPrice.Text = $" {newPrice:N2} р.";
+                    RunNewPrice.Foreground = Brushes.Black;
+                }
+
+                if (product.CountOnStorage == 0)
+                {
+                    BoxCount.Foreground = Brushes.Blue; 
+                }
+            }
 
         }
     }

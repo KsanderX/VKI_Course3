@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Demo_Shoes.Controllers"
              mc:Ignorable="d" 
              d:DesignHeight="230" d:DesignWidth="1000">
-    <Border BorderBrush="Black" BorderThickness="2">
+    <Border x:Name="MainBorder" BorderBrush="Black" BorderThickness="2">
         <Grid  Margin=" 10 5 5 5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"/>
@@ -63,9 +63,13 @@
 
             <!--правый компонент-->
             <Border Grid.Column="2" BorderBrush="Black" x:Name="BorderDiscount" BorderThickness="2" >
-                <TextBlock Text="{Binding Discount}"  FontSize="24"
+                <TextBlock   FontSize="24"
 				 VerticalAlignment="Center"
-				 HorizontalAlignment="Center"/>
+				 HorizontalAlignment="Center">
+                    <Run Text="{Binding Discount}"/>
+                    <Run Text="%"/>
+                </TextBlock>
+                
             </Border>
         </Grid>
     </Border>

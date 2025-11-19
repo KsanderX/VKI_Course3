@@ -19,6 +19,9 @@ namespace Demo_Shoes
 
             services.AddTransient<AuthorizationView>();
             services.AddTransient<ProductView>();
+            services.AddTransient<OrderView>();
+            services.AddTransient<AddProductView>();
+            services.AddTransient<EditProductView>();
 
             _service = services.BuildServiceProvider();
         }

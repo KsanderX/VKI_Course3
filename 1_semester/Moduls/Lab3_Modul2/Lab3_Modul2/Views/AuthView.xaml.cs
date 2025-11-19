@@ -51,8 +51,8 @@ namespace Lab3_Modul2.Views
         private void btnAuthGuest_Click(object sender, RoutedEventArgs e)
         {
             var startView = new StartView();
-            startView.Show();
             this.Close();
+            startView.Show();
         }
     }
 }

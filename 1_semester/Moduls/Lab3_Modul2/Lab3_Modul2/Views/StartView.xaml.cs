@@ -9,10 +9,21 @@ namespace Lab3_Modul2.Views
     /// </summary>
     public partial class StartView : Window
     {
+        private List<User> users;
+        private List<string> roles = new() { "все роли" };
+
+        private string sortParam;
+        private string filtParam = "все роли";
         public StartView(User user = null)
         {
             InitializeComponent();
-            if(user == null)
+            users = Models.AppContext.Users;
+            roles.AddRange(Models.AppContext.Roles.Select(r => r.Name));
+
+            BoxUsers.ItemsSource = users;
+            BoxRole.ItemsSource = roles;
+
+            if (user == null)
             {
                 RunNameUser.Text = "Гость";
                 RunRoleUser.Text = "Гость";
@@ -21,7 +32,7 @@ namespace Lab3_Modul2.Views
             {
                 RunNameUser.Text = user.Name;
                 RunRoleUser.Text = user.Role.Name;
-                
+
                 switch (user.Role.Name)
                 {
                     case "Администратор":
@@ -37,10 +48,7 @@ namespace Lab3_Modul2.Views
                         panelRequst.Visibility = Visibility.Visible;
                         break;
                 }
-            }           
-            BoxUsers.ItemsSource = Models.AppContext.Users;
-
-           
+            }
         }
 
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
@@ -63,6 +71,54 @@ namespace Lab3_Modul2.Views
             User user = boxUsers.SelectedItem as User;
 
             MessageBox.Show($"Редактирование пользователя: {user.Name}", "Редактирование", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        public void Find()
+        {
+            users = Models.AppContext.Users;
+            users.Where(u => u.Name.Contains(BoxFind.Text, StringComparison.OrdinalIgnoreCase) || //Find
+                u.Login.Contains(BoxFind.Text, StringComparison.OrdinalIgnoreCase)) //Filter
+                .Where(q => q.Role.Name == filtParam
+                 || filtParam == "все роли");
+            if (sortParam == "По возрастанию")
+            {
+                users.OrderBy(q => q.ID); // Sort
+            }
+            else if (sortParam == "По убыванию")
+            {
+                //users.OrderByDescending(u => u.ID).ToList();
+                users.Reverse();
+            }
+            if (BoxUsers != null)
+            {
+                BoxUsers.ItemsSource = users;
+                BoxUsers.Items.Refresh();
+            }
+        }
+        //Find
+        private void BoxFind_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Find();
+        }
+        //Sort
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton radio = sender as RadioButton;
+            if (radio.Content.ToString() == "По возрастанию")
+            {
+                sortParam = "По возрастанию";
+            }
+            else if (radio.Content.ToString() == "По убыванию")
+            {
+                sortParam = "По убыванию";
+                Find();
+            }
+        }
+        //Filter
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            filtParam = comboBox.SelectedItem.ToString();
+            Find();
         }
     }
 }

@@ -18,17 +18,22 @@
             </StackPanel>
         </DockPanel>
 
+        <!--Сортировка и поиск и фильтрация-->
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top"
                     Visibility="Collapsed" Name="panelFind">
-            <TextBox x:Name="BoxFind" Width="120"/>
+            <TextBox x:Name="BoxFind" Width="120" TextChanged="BoxFind_TextChanged"/>
             <Label Content="Поиск" />
-            <RadioButton Content="По возрастанию" VerticalAlignment="Center" Margin="5,0,0,0"/>
-            <RadioButton Content="По убыванию" VerticalAlignment="Center" Margin="5,0,0,0"/>
+            <RadioButton Content="По возрастанию" VerticalAlignment="Center" 
+                         Margin="5,0,0,0" Checked="RadioButton_Checked"
+                         IsChecked="True"/>
+            <RadioButton Content="По убыванию" VerticalAlignment="Center"
+                         Margin="5,0,0,0" Checked="RadioButton_Checked"/>
 
-            <ComboBox Margin="5 0 0 0" Width="120" SelectedIndex="0">
-                <ComboBoxItem>
-                    Все Поставщики
-                </ComboBoxItem>
+            <ComboBox Margin="5 0 0 0" Width="120" SelectedIndex="0"
+                      SelectionChanged="ComboBox_SelectionChanged"
+                      
+                      Name="BoxRole">
+               
             </ComboBox>
         </StackPanel>
         

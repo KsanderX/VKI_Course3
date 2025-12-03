@@ -6,8 +6,29 @@
         xmlns:local="clr-namespace:Demo_Shoes.VIews"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Окно списка заказов" Height="450" Width="800">
-    <Grid>
+        Title="Окно списка заказов" Height="600" Width="900">
+    <DockPanel>
         
-    </Grid>
+        <DockPanel DockPanel.Dock="Top" >            
+            <Button Content="Назад" FontSize="25" Width="100" Margin="10" x:Name="btnExit" Click="btnExit_Click"/>
+            <StackPanel/>
+        </DockPanel>
+
+        <DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+            <StackPanel x:Name="panelCRUD" Visibility="Collapsed"
+                 Orientation="Horizontal" Cursor="" HorizontalAlignment="Right">
+                <Button x:Name="btnAddOrder" FontSize="25" Margin="10 10"
+                        Width="200" Content="Добавить заказ" Click="btnAddProduct_Click"/>
+                <Button x:Name="btnDeleteOrder" FontSize="25" Margin="10 10"
+                        Width="200" Content="Удалить заказ" Cursor="" Click="btnDeleteOrder_Click"/>
+            </StackPanel>           
+        </DockPanel>
+        
+        <DockPanel Margin="50 0 20 50">
+            <ScrollViewer Height="500">
+                <ListBox x:Name="BoxOrder" HorizontalContentAlignment="Stretch" 
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+            </ScrollViewer>
+        </DockPanel>
+    </DockPanel>
 </Window>

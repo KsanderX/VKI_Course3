@@ -1,5 +1,5 @@
-﻿using System.IO;
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Demo_Shoes.Controllers;
 using Demo_Shoes.Models;
@@ -18,6 +18,7 @@ namespace Demo_Shoes
         private readonly AganichevShoesContext _context;
         private User _currentUser;
         private List<Product> _cachedProducts = new List<Product>();
+        private string SortParam = "По возрастанию";
         public ProductView(AganichevShoesContext context, IServiceProvider service)
         {
             InitializeComponent();
@@ -51,17 +52,10 @@ namespace Demo_Shoes
 
                     case "Менеджер":
                         panelOrder.Visibility = Visibility.Visible;
+                        panelFind.Visibility = Visibility.Visible;
                         break;
                 }
             }
-        }
-        private void LoadSuppliers()
-        {
-            var suppliers = _context.Suppliers.ToList();
-            suppliers.Insert(0, new Supplier { Id = 0, Name = "Все поставщики" });
-
-            CbSupplier.ItemsSource = suppliers;
-            CbSupplier.SelectedIndex = 0; 
         }
         private void BoxProduct_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -86,40 +80,19 @@ namespace Demo_Shoes
         }
         public void GetAllProducts()
         {
-            var allProducts = _context.Products
+            _cachedProducts = _context.Products
                 .Include(p => p.FkManufacturerNavigation)
                 .Include(p => p.FkProductCategoryNavigation)
                 .Include(p => p.FkSupplierNavigation)
                 .Include(p => p.FkUnitNavigation)
                 .Include(p => p.FkProductNameNavigation)
                 .ToList();
-
-            string basePath = AppDomain.CurrentDomain.BaseDirectory;
-            string photosFolder = "Photos";
-            foreach (var item in allProducts)
-            {
-                string fullPath = null;
-                if (!string.IsNullOrWhiteSpace(item.Photo))
-                {
-                    fullPath = Path.Combine(basePath, photosFolder, item.Photo);
-                }
-                if (string.IsNullOrWhiteSpace(fullPath))
-                {
-                    item.Photo = Path.Combine(basePath, photosFolder, "picture.png");
-                }
-                else
-                {
-                    item.Photo = fullPath;
-                }
-                ProductItemController productController = new ProductItemController();
-                productController.DataContext = item;
-                BoxProduct.Items.Add(productController);
-            }
+            Sort();
         }
-
         private void btnOpenOrder_Click(object sender, RoutedEventArgs e)
         {
             var orderView = _service.GetRequiredService<OrderView>();
+            orderView.SetCurrentUser(_currentUser);
             this.Close();
             orderView.Show();
         }
@@ -169,13 +142,82 @@ namespace Demo_Shoes
             }
         }
 
-       
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             var authView = _service.GetRequiredService<AuthorizationView>();
             MessageBox.Show("Вы вышли из аккаунта");
             this.Close();
             authView.Show();
+        }
+       
+        private void LoadSuppliers()
+        {
+            var suppliers = _context.Suppliers.ToList();
+            suppliers.Insert(0, new Supplier { Id = 0, Name = "Все поставщики" });
+
+            CbSupplier.ItemsSource = suppliers;
+            CbSupplier.SelectedIndex = 0; 
+        }
+        public void Sort()
+        {
+            var products = _cachedProducts;
+            string searchText = BoxFind.Text.ToLower();
+            if (!string.IsNullOrWhiteSpace(searchText))
+            {
+                products = products.Where(q =>
+                    (q.Description != null && q.Description.ToLower().Contains(searchText)) ||
+                    (q.Article != null && q.Article.ToLower().Contains(searchText)) ||
+                    (q.FkProductNameNavigation != null && 
+                    q.FkProductNameNavigation.Name.ToLower().Contains(searchText)) ||
+                    q.FkProductCategoryNavigation.Name.ToLower().Contains(searchText)
+                ).ToList();
+            }
+            if (CbSupplier.SelectedItem is Supplier selectedSupplier)
+            {
+                if(selectedSupplier.Name != "Все поставщики")
+                { 
+                    products = products.Where(q => q.FkSupplier == selectedSupplier.Id).ToList();
+                }
+            }
+            if(SortParam == "По возрастанию")
+            {
+                products = products.OrderBy(q => q.CountOnStorage).ToList();
+            }
+            else if(SortParam == "По убыванию")
+            {
+                products = products.OrderByDescending(q => q.CountOnStorage).ToList();
+            }
+            DrawProduct(products);
+        }
+        private void DrawProduct(List<Product> productsToDraw)
+        {
+            BoxProduct.Items.Clear();
+
+            foreach (var item in productsToDraw)
+            {
+                ProductItemController productController = new ProductItemController();
+                productController.DataContext = item;
+
+                BoxProduct.Items.Add(productController);
+            }
+        }
+        private void CbSupplier_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            Sort();
+        }
+
+        private void BoxFind_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            Sort();
+        }
+
+        private void Radio_Checked(object sender, RoutedEventArgs e)
+        {
+            if (sender is RadioButton radio)
+            {
+                SortParam = radio.Content.ToString();
+                Sort();
+            }
         }
     }
 }

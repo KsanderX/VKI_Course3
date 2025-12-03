@@ -18,10 +18,14 @@ namespace Demo_Shoes
             services.AddDbContext<AganichevShoesContext>();
 
             services.AddTransient<AuthorizationView>();
+
             services.AddTransient<ProductView>();
-            services.AddTransient<OrderView>();
             services.AddTransient<AddProductView>();
-            services.AddTransient<EditProductView>();
+            services.AddTransient<EditProductView>()
+                ;
+            services.AddTransient<OrderView>();
+            services.AddTransient<EditOrderView>();
+            services.AddTransient<AddOrderView>();
 
             _service = services.BuildServiceProvider();
         }

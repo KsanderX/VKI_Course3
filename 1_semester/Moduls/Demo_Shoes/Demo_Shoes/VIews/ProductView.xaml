@@ -23,19 +23,19 @@
 
             <Label Content="Поиск:" VerticalAlignment="Center"/>
             <TextBox x:Name="BoxFind" Width="200" Margin="5,0,10,0" 
-             VerticalAlignment="Center" />
+             VerticalAlignment="Center" TextChanged="BoxFind_TextChanged"/>
 
             <Label Content="Сортировка (склад):" VerticalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <RadioButton x:Name="RbSortAsc" Content="По возрастанию" GroupName="Sort" Margin="5,0" 
-                    />
-                <RadioButton x:Name="RbSortDesc" Content="По убыванию" GroupName="Sort" Margin="5,0" 
-                   />
+                <RadioButton x:Name="RbUpp" Content="По возрастанию" GroupName="Sort" Margin="5,0" 
+                    Checked="Radio_Checked"/>
+                <RadioButton x:Name="RbDown" Content="По убыванию" GroupName="Sort" Margin="5,0" 
+                    Checked="Radio_Checked"/>
             </StackPanel>
 
             <Label Content="Поставщик:" VerticalAlignment="Center" Margin="10,0,0,0"/>
             <ComboBox x:Name="CbSupplier" Width="150" Margin="5,0,0,0" 
-              VerticalAlignment="Center"
+              VerticalAlignment="Center" SelectionChanged="CbSupplier_SelectionChanged"
               DisplayMemberPath="Name" >
             </ComboBox>
         </StackPanel>
@@ -53,7 +53,7 @@
         </DockPanel>
          
         <DockPanel Margin="50 0 20 50">             
-            <ScrollViewer Height="400">
+            <ScrollViewer Height="660">
                 <ListBox x:Name="BoxProduct" HorizontalContentAlignment="Stretch" 
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
             </ScrollViewer>

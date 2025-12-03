@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Demo_Shoes.Models;
 
 namespace Demo_Shoes.Controllers
@@ -13,15 +15,31 @@ namespace Demo_Shoes.Controllers
         public ProductItemController()
         {
             InitializeComponent();
-            InitializeComponent();
 
             this.DataContextChanged += UserControl_DataContextChanged;
         }
 
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
+        {      
             if (DataContext is Product product)
             {
+                string basePath = AppDomain.CurrentDomain.BaseDirectory;
+                string photosFolder = "Photos";
+                string fullPath = null;
+
+                if (!string.IsNullOrWhiteSpace(product.Photo))
+                {
+                    fullPath = Path.Combine(basePath, photosFolder, product.Photo);
+                }
+
+                if(string.IsNullOrWhiteSpace(fullPath) || !File.Exists(fullPath))
+                {
+                    fullPath = Path.Combine(basePath, photosFolder, "picture.png");
+                }
+                Uri uri = new Uri(fullPath);
+                BitmapImage bitmap = new(uri);
+                ImgProduct.Source = bitmap;
+
                 MainBorder.Background = Brushes.White;
                 RunPrice.TextDecorations = null;
                 RunPrice.Foreground = Brushes.Black;

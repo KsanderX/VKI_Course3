@@ -3,11 +3,9 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using Demo_Shoes.Models;
 using Microsoft.Win32;
+
 namespace Demo_Shoes.VIews
 {
-    /// <summary>
-    /// Логика взаимодействия для EditProductView.xaml
-    /// </summary>
     public partial class EditProductView : Window
     {
         private readonly AganichevShoesContext _context;
@@ -39,14 +37,11 @@ namespace Demo_Shoes.VIews
         private void FillFields()
         {
             TbId.Text = _currentProduct.Id.ToString();
-
             tbName.Text = _currentProduct.FkProductNameNavigation?.Name;
-
             CbCategory.SelectedValue = _currentProduct.FkProductCategory;
             CbManufacturer.SelectedValue = _currentProduct.FkManufacturer;
             CbSupplier.SelectedValue = _currentProduct.FkSupplier;
             CbUnit.SelectedValue = _currentProduct.FkUnit;
-
             TbPrice.Text = _currentProduct.Price?.ToString("N2");
             TbCount.Text = _currentProduct.CountOnStorage?.ToString();
             TbDiscount.Text = _currentProduct.Discount?.ToString();
@@ -58,42 +53,57 @@ namespace Demo_Shoes.VIews
 
         private void ShowImage(string fileName)
         {
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            string photosFolder = "Photos";
+            string fullPath;
+
             if (string.IsNullOrEmpty(fileName))
             {
-                fileName = "picture.png";
+                fullPath = Path.Combine(basePath, photosFolder, "picture.png");
             }
-
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Photos", fileName);
-            if (!File.Exists(path))
+            else
             {
-                path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Photos", "picture.png");
+                fullPath = Path.Combine(basePath, photosFolder, fileName);
+                if (!File.Exists(fullPath))
+                {
+                    fullPath = Path.Combine(basePath, photosFolder, "picture.png");
+                }
             }
 
             try
             {
-                BitmapImage bmp = new BitmapImage();
-                bmp.BeginInit();
-                bmp.CacheOption = BitmapCacheOption.OnLoad; 
-                bmp.UriSource = new Uri(path);
-                bmp.EndInit();
-                ImgProduct.Source = bmp;
+                var bitmap = new BitmapImage();
+                using (var stream = new FileStream(fullPath, FileMode.Open, FileAccess.Read))
+                {
+                    bitmap.BeginInit();
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.StreamSource = stream;
+                    bitmap.EndInit();
+                    bitmap.Freeze();
+                }
+                ImgProduct.Source = bitmap;
             }
             catch { ImgProduct.Source = null; }
         }
-
         private void BtnChangePhoto_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = "Images|*.jpg;*.jpeg;*.png";
             if (dlg.ShowDialog() == true)
             {
-                var bmp = new BitmapImage(new Uri(dlg.FileName));
-
-                ImgProduct.Source = bmp;
-                _newPhotoPath = dlg.FileName; 
+                BitmapImage bitmap = new BitmapImage();
+                using (var stream = new FileStream(dlg.FileName, FileMode.Open, FileAccess.Read))
+                {
+                    bitmap.BeginInit();
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.StreamSource = stream;
+                    bitmap.EndInit();
+                    bitmap.Freeze();
+                }
+                ImgProduct.Source = bitmap;
+                _newPhotoPath = dlg.FileName;
             }
         }
-
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbName.Text)) { MessageBox.Show("Введите имя!"); return; }
@@ -103,40 +113,13 @@ namespace Demo_Shoes.VIews
 
             try
             {
-                string nameInput = tbName.Text.Trim();
-                int productNameId;
-
+                string nameInput = tbName.Text.Trim(); int productNameId;
                 var existingName = _context.ProductNames.FirstOrDefault(n => n.Name.ToLower() == nameInput.ToLower());
-
-                if (existingName != null)
-                {
-                    productNameId = existingName.Id;
-                }
-                else
-                {
-                    ProductName newNameEntity = new ProductName { Name = nameInput };
-
-                    int newNameId = 1;
-                    if (_context.ProductNames.Any())
-                        newNameId = _context.ProductNames.Max(x => x.Id) + 1;
-
-                    newNameEntity.Id = newNameId;
-                    _context.ProductNames.Add(newNameEntity);
-                    _context.SaveChanges();
-                    productNameId = newNameId;
-                }
-
+                if (existingName != null) { productNameId = existingName.Id; }
+                else { ProductName newNameEntity = new ProductName { Name = nameInput }; int newNameId = 1; if (_context.ProductNames.Any()) newNameId = _context.ProductNames.Max(x => x.Id) + 1; newNameEntity.Id = newNameId; _context.ProductNames.Add(newNameEntity); _context.SaveChanges(); productNameId = newNameId; }
                 _currentProduct.FkProductName = productNameId;
 
-                _currentProduct.FkProductCategory = (int?)CbCategory.SelectedValue;
-                _currentProduct.FkManufacturer = (int?)CbManufacturer.SelectedValue;
-                _currentProduct.FkSupplier = (int?)CbSupplier.SelectedValue;
-                _currentProduct.FkUnit = (int?)CbUnit.SelectedValue;
-
-                _currentProduct.Price = (double)price;
-                _currentProduct.CountOnStorage = count;
-                _currentProduct.Discount = discount;
-                _currentProduct.Description = TbDescription.Text;
+                _currentProduct.FkProductCategory = (int?)CbCategory.SelectedValue; _currentProduct.FkManufacturer = (int?)CbManufacturer.SelectedValue; _currentProduct.FkSupplier = (int?)CbSupplier.SelectedValue; _currentProduct.FkUnit = (int?)CbUnit.SelectedValue; _currentProduct.Price = (double)price; _currentProduct.CountOnStorage = count; _currentProduct.Discount = discount; _currentProduct.Description = TbDescription.Text;
 
                 if (_newPhotoPath != null)
                 {
@@ -149,25 +132,19 @@ namespace Demo_Shoes.VIews
                     if (!string.IsNullOrEmpty(_oldPhotoName) && _oldPhotoName != "picture.png")
                     {
                         string oldPath = Path.Combine(folder, _oldPhotoName);
-                        if (File.Exists(oldPath)) File.Delete(oldPath);
+                        if (File.Exists(oldPath)) try { File.Delete(oldPath); } catch { }
                     }
                 }
 
-                _context.SaveChanges();
-                DialogResult = true;
-                Close();
+                _context.SaveChanges(); DialogResult = true; Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка БД: " + ex.Message);
-            }
+            catch (Exception ex) { MessageBox.Show("Ошибка БД: " + ex.Message); }
         }
 
-        private void BtnCancel_Click(object sender, RoutedEventArgs e)
-        {
+        private void BtnCancel_Click(object sender, RoutedEventArgs e) 
+        { 
             DialogResult = false;
-            MessageBox.Show("Редактирование товара отменено. \nВсе измененные данные не будут сохранены");
-            Close();
-        }  
+            Close(); 
+        }
     }
 }

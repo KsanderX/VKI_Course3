@@ -16,7 +16,7 @@
 
             <!--левый компонент-->
             <StackPanel Grid.Column="0">
-                <Image Source="{Binding Photo}"
+                <Image x:Name="ImgProduct"
 				 MaxHeight="200" MaxWidth="300"/>
             </StackPanel>
 

@@ -1,14 +1,13 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using Demo_Shoes.Models;
 using Microsoft.Win32;
+using Demo_Shoes.Models;
 
 namespace Demo_Shoes.VIews
 {
-    /// <summary>
-    /// Логика взаимодействия для AddProductView.xaml
-    /// </summary>
     public partial class AddProductView : Window
     {
         private readonly AganichevShoesContext _context;
@@ -19,6 +18,30 @@ namespace Demo_Shoes.VIews
             InitializeComponent();
             _context = context;
             LoadComboBoxes();
+            LoadPlaceholderImage();
+        }
+        private void LoadPlaceholderImage()
+        {
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            string path = Path.Combine(basePath, "Photos", "picture.png");
+
+            if (File.Exists(path))
+            {
+                ImgProduct.Source = LoadBitmapImage(path);
+            }
+        }
+        private BitmapImage LoadBitmapImage(string path)
+        {
+            var bitmap = new BitmapImage();
+            using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
+            {
+                bitmap.BeginInit();
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.StreamSource = stream;
+                bitmap.EndInit();
+                bitmap.Freeze(); 
+            }
+            return bitmap;
         }
 
         private void LoadComboBoxes()
@@ -36,23 +59,16 @@ namespace Demo_Shoes.VIews
 
             if (openFileDialog.ShowDialog() == true)
             {
-                BitmapImage bitmap = new BitmapImage(new Uri(openFileDialog.FileName));
-
+                BitmapImage bitmap = LoadBitmapImage(openFileDialog.FileName);
+                ImgProduct.Source = bitmap;
                 _selectedImageInfo = openFileDialog.FileName;
             }
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TbName.Text) ||
-                CbCategory.SelectedItem == null ||
-                CbManufacturer.SelectedItem == null ||
-                CbUnit.SelectedItem == null)
-            {
-                MessageBox.Show("Заполните наименование и выберите значения из списков!");
-                return;
-            }
-
+            if (string.IsNullOrWhiteSpace(TbName.Text) || CbCategory.SelectedItem == null || CbManufacturer.SelectedItem == null || CbUnit.SelectedItem == null)
+            { MessageBox.Show("Заполните обязательные поля!"); return; }
             if (!decimal.TryParse(TbPrice.Text, out decimal price) || price < 0) { MessageBox.Show("Некорректная цена!"); return; }
             if (!double.TryParse(TbCount.Text, out double count) || count < 0) { MessageBox.Show("Некорректное количество!"); return; }
             double.TryParse(TbDiscount.Text, out double discount);
@@ -61,32 +77,16 @@ namespace Demo_Shoes.VIews
             {
                 string nameInput = TbName.Text.Trim();
                 int productNameId;
-
                 var existingName = _context.ProductNames.FirstOrDefault(n => n.Name.ToLower() == nameInput.ToLower());
-
-                if (existingName != null)
-                {
-                    productNameId = existingName.Id;
-                }
+                if (existingName != null) { productNameId = existingName.Id; }
                 else
                 {
                     ProductName newNameEntity = new ProductName { Name = nameInput };
-
-                    int newNameId = 1;
-                    if (_context.ProductNames.Any())
-                        newNameId = _context.ProductNames.Max(x => x.Id) + 1;
-
-                    newNameEntity.Id = newNameId;
-
-                    _context.ProductNames.Add(newNameEntity);
-                    _context.SaveChanges(); 
-                    productNameId = newNameId;
+                    int newNameId = 1; if (_context.ProductNames.Any()) newNameId = _context.ProductNames.Max(x => x.Id) + 1;
+                    newNameEntity.Id = newNameId; _context.ProductNames.Add(newNameEntity); _context.SaveChanges(); productNameId = newNameId;
                 }
-                int newProductId = 1;
-                if (_context.Products.Any())
-                    newProductId = _context.Products.Max(p => p.Id) + 1;
+                int newProductId = 1; if (_context.Products.Any()) newProductId = _context.Products.Max(p => p.Id) + 1;
 
-               
                 string finalPhotoName = null;
                 if (_selectedImageInfo != null)
                 {
@@ -99,7 +99,7 @@ namespace Demo_Shoes.VIews
                 Product newProduct = new Product
                 {
                     Id = newProductId,
-                    FkProductName = productNameId, 
+                    FkProductName = productNameId,
                     FkProductCategory = (int)CbCategory.SelectedValue,
                     FkManufacturer = (int)CbManufacturer.SelectedValue,
                     FkSupplier = (int?)CbSupplier.SelectedValue,
@@ -113,22 +113,15 @@ namespace Demo_Shoes.VIews
 
                 _context.Products.Add(newProduct);
                 _context.SaveChanges();
-
-                MessageBox.Show("Товар добавлен!");
-                DialogResult = true;
-                this.Close();
+                MessageBox.Show("Товар добавлен!"); DialogResult = true; Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка: {ex.Message}");
-            }
+            catch (Exception ex) { MessageBox.Show($"Ошибка: {ex.Message}"); }
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
-        {
+        { 
             DialogResult = false;
-            this.Close(); 
+            Close();
         }
     }
 }
-

@@ -27,7 +27,7 @@
 
             <Label Content="Сортировка (склад):" VerticalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <RadioButton x:Name="RbUpp" Content="По возрастанию" GroupName="Sort" Margin="5,0" 
+                <RadioButton x:Name="RbUpp" Content="По возрастанию"  GroupName="Sort" Margin="5,0" 
                     Checked="Radio_Checked"/>
                 <RadioButton x:Name="RbDown" Content="По убыванию" GroupName="Sort" Margin="5,0" 
                     Checked="Radio_Checked"/>

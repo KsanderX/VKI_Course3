@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Demo_Shoes.VIews"
         mc:Ignorable="d"
-        Title="Окно изменения товара" Height="450" Width="806">
+        Title="Окно изменения товара" Height="477" Width="806">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>

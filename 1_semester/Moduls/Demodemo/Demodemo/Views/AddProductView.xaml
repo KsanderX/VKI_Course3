@@ -1,0 +1,60 @@
+﻿<Window x:Class="Demodemo.Views.AddProductView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demodemo.Views"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Добавление товара" Height="689" Width="800">
+    <Grid Margin="0,0,0,-80">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="Фото:" FontSize="18"/>
+            <Image MaxHeight="200" MaxWidth="300" x:Name="imageName"/>            
+            <Button Height="30" Click="btnLoadPhoto" Content="Выбрать фото"/>
+            
+        </StackPanel>
+        
+        <StackPanel Grid.Column="1" Width="300" >                      
+            <TextBlock Text="Артикул:" FontSize="18"/>
+            <TextBox FontSize="18" Height="30" x:Name="tbArticle"/>
+            
+            <TextBlock Text="Описание:" FontSize="18"/>
+            <TextBox FontSize="18" Height="30" x:Name="tbDescription"/>
+            
+            <TextBlock Text="Цена:" FontSize="18"/>
+            <TextBox FontSize="18" Height="30" x:Name="tbPrice"/>
+            
+            <TextBlock Text="Количество:" FontSize="18"/>
+            <TextBox FontSize="18" Height="30" x:Name="tbQuantity"/>
+            
+            <TextBlock Text="Скидка:" FontSize="18"/>
+            <TextBox FontSize="18" Height="30" x:Name="tbDiscount"/>
+            
+            <TextBlock Text="Имя продукта:" FontSize="18" />
+            <ComboBox x:Name="cbProductNames" Height="30" DisplayMemberPath="Name" SelectedIndex="0"/>
+            
+            <TextBlock Text="Категория продукта:" FontSize="18"/>
+            <ComboBox x:Name="cbCategory" Height="30" DisplayMemberPath="Name" SelectedIndex="0"/>
+            
+            <TextBlock Text="Производитель:" FontSize="18"/>
+            <ComboBox x:Name="cbSuppliers" Height="30" DisplayMemberPath="Name" SelectedIndex="0"/>
+            
+            <TextBlock Text="Поставщик:" FontSize="18"/>
+            <ComboBox x:Name="cbProviders" Height="30" DisplayMemberPath="Name" SelectedIndex="0"/>
+            
+            <TextBlock Text="Единица измерения:" FontSize="18"/>
+            <ComboBox x:Name="cbUnits" Height="30" DisplayMemberPath="Name" SelectedIndex="0"/>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="281">                
+                <Button FontSize="16" Margin="5" Height="30" Width="150" Content="Создать продукт" Click="btnAddProduct" />
+                <Button Margin="5" FontSize="16" Height="30" Width="100" Content="Отмена" Name="btnExit" Click="btnExit_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

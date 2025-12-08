@@ -1,0 +1,6 @@
+Scaffold-DbContext "Server=PC_Sanya;Database=Aganichev_Shoes;TrustServerCertificate=True; Integrated Security=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+Scaffold-DbContext "Server=PC_SANYA;Database=Aganichev_Shoes;TrustServerCertificate=True;Integrated Security=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+Scaffold-DbContext "Server=DBSRV\vip2024;Database=BibliotekaBork;Trust Server Certificate=True;Integrated Security=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+

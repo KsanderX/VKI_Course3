@@ -27,7 +27,7 @@ namespace Demo_Shoes
             LoadSuppliers();
             GetAllProducts();
 
-           
+
         }
         public void SetCurrentUser(User user)
         {
@@ -46,7 +46,7 @@ namespace Demo_Shoes
                     case "Администратор":
                         panelCRUD.Visibility = Visibility.Visible;
                         panelFind.Visibility = Visibility.Visible;
-                        panelOrder.Visibility = Visibility.Visible; 
+                        panelOrder.Visibility = Visibility.Visible;
                         BoxProduct.MouseDoubleClick += BoxProduct_MouseDoubleClick;
                         break;
 
@@ -59,21 +59,21 @@ namespace Demo_Shoes
         }
         private void BoxProduct_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-           
+
             var selectedController = BoxProduct.SelectedItem as ProductItemController;
 
             if (selectedController != null && selectedController.DataContext is Product selectedProduct)
             {
-               
+
                 var editView = _service.GetRequiredService<EditProductView>();
 
-                
+
                 editView.InitializeData(selectedProduct);
 
-                
+
                 if (editView.ShowDialog() == true)
                 {
-                    GetAllProducts(); 
+                    GetAllProducts();
                     MessageBox.Show("Товар успешно изменен!");
                 }
             }
@@ -88,6 +88,14 @@ namespace Demo_Shoes
                 .Include(p => p.FkProductNameNavigation)
                 .ToList();
             Sort();
+        }
+        private void LoadSuppliers()
+        {
+            var suppliers = _context.Suppliers.ToList();
+            suppliers.Insert(0, new Supplier { Id = 0, Name = "Все поставщики" });
+
+            CbSupplier.ItemsSource = suppliers;
+            CbSupplier.SelectedIndex = 0;
         }
         private void btnOpenOrder_Click(object sender, RoutedEventArgs e)
         {
@@ -149,15 +157,7 @@ namespace Demo_Shoes
             this.Close();
             authView.Show();
         }
-       
-        private void LoadSuppliers()
-        {
-            var suppliers = _context.Suppliers.ToList();
-            suppliers.Insert(0, new Supplier { Id = 0, Name = "Все поставщики" });
 
-            CbSupplier.ItemsSource = suppliers;
-            CbSupplier.SelectedIndex = 0; 
-        }
         public void Sort()
         {
             var products = _cachedProducts;
@@ -167,23 +167,23 @@ namespace Demo_Shoes
                 products = products.Where(q =>
                     (q.Description != null && q.Description.ToLower().Contains(searchText)) ||
                     (q.Article != null && q.Article.ToLower().Contains(searchText)) ||
-                    (q.FkProductNameNavigation != null && 
+                    (q.FkProductNameNavigation != null &&
                     q.FkProductNameNavigation.Name.ToLower().Contains(searchText)) ||
                     q.FkProductCategoryNavigation.Name.ToLower().Contains(searchText)
                 ).ToList();
             }
             if (CbSupplier.SelectedItem is Supplier selectedSupplier)
             {
-                if(selectedSupplier.Name != "Все поставщики")
-                { 
+                if (selectedSupplier.Name != "Все поставщики")
+                {
                     products = products.Where(q => q.FkSupplier == selectedSupplier.Id).ToList();
                 }
             }
-            if(SortParam == "По возрастанию")
+            if (SortParam == "По возрастанию")
             {
                 products = products.OrderBy(q => q.CountOnStorage).ToList();
             }
-            else if(SortParam == "По убыванию")
+            else if (SortParam == "По убыванию")
             {
                 products = products.OrderByDescending(q => q.CountOnStorage).ToList();
             }

@@ -1,0 +1,64 @@
+﻿<Window x:Class="Demodemo.Views.EditProductView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demodemo.Views"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Редактирование товара" Height="450" Width="600">
+    <Grid>
+        <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+    
+    <ScrollViewer Grid.Column="1">
+            <StackPanel HorizontalAlignment="Center" Width="250">
+                <TextBlock Text="ID Товара"/>
+                <TextBox Name="tbID" IsReadOnly="True" />
+
+                <TextBlock Text="Наименование"/>
+                <ComboBox Name="cbName"  />
+
+                <TextBlock Text="Категория товара"/>
+                <ComboBox Name="cbCategory" SelectedIndex="0" DisplayMemberPath="Name" />
+
+                <TextBlock Text="Описание"/>
+                <TextBox Name="tbDesc" TextWrapping="Wrap" Height="50"/>
+
+                <TextBlock Text="Производитель"/>
+                <ComboBox Name="cbManuf" SelectedIndex="0" DisplayMemberPath="Name"  />
+
+                <TextBlock Text="Поставщик"/>
+                <ComboBox Name="cbSupplier" IsReadOnly="True"  />
+
+                <TextBlock Text="Цена"/>
+                <TextBox Name="tbPrice"  />
+
+                <TextBlock Text="Единица измерения"/>
+                <ComboBox Name="cbUnit" SelectedIndex="0" DisplayMemberPath="Name" />
+
+                <TextBlock Text="Количество на складе"/>
+                <TextBox Name="tbCountOnStorage"  />
+
+                <TextBlock Text="Скидка"/>
+                <TextBox Name="tbDiscount"/>
+                
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 0" HorizontalAlignment="Center">
+                    <Button x:Name="btnSaveProduct" Content="Сохранить" Click="btnSaveProduct_Click" />
+                    <Button x:Name="btnExit" Content="Отмена" Margin="5 0 0 0" Click="btnExit_Click" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <StackPanel>               
+            <TextBlock Text="Изображение"/>
+            <Border Margin="5" Height="100" Width="200" Grid.Column="0" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Left">
+                <Image  Name="imgProduct" Stretch="Uniform"/>
+            </Border>
+            <Button Content="Загрузить изображение" Width="150" Height="30" Margin="5" Click="btnLoadImage_Click" HorizontalAlignment="Left"/>
+        </StackPanel>-->
+        
+    </Grid>
+</Window>

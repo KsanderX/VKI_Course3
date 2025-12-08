@@ -1,0 +1,45 @@
+﻿<Window x:Class="WpfApp12.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp12"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1200">
+    <Grid>
+        <DockPanel>
+            
+            <DockPanel DockPanel.Dock="Top" >
+                <TextBlock DockPanel.Dock="Right">
+                    <Run Text="Добро пожаловать"/>
+                    <Run x:Name="RunFIO"/>
+                </TextBlock>
+                <Button Click="btnExit" Width="200" Content="Выход" />
+
+                <StackPanel>
+                </StackPanel>
+            </DockPanel>
+
+            <StackPanel Orientation="Horizontal" x:Name="panelFind" DockPanel.Dock="Top">
+                <TextBlock Text="Поиск:"/>
+                <TextBox Width="150" Margin="10,0,0,0" TextChanged="TextBox_TextChanged" x:Name="tbFind"/>
+                <RadioButton Content="по возрастанию" Margin="10,0,0,0" Checked="RadioButton_Checked"/>
+                <RadioButton Content="по убыванию" Margin="10,0,0,0" Checked="RadioButton_Checked"/>
+                <TextBlock Text="Поставщик:" Margin="10,0,0,0"/>
+                <ComboBox Width="150" x:Name="cbProvider" Margin="10,0,0,0" SelectionChanged="cbProvider_SelectionChanged" SelectedIndex="0" DisplayMemberPath="Name" SelectedValuePath="Id"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" x:Name="panelCRUID" DockPanel.Dock="Bottom">
+                <Button Width="150" Content="Добавить товар" Click="btnOpenAddProductWindow"/>
+                <Button Width="150" Content="Редактировать товар"/>
+                <Button Width="150" Content="Удалить товар" Click="btnDelete"/>
+            </StackPanel>
+
+            <StackPanel>
+                <ListBox x:Name="lbProducts" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="500" MouseDoubleClick="lbProducts_MouseDoubleClick">
+                </ListBox>
+            </StackPanel>
+
+        </DockPanel>
+    </Grid>
+</Window>

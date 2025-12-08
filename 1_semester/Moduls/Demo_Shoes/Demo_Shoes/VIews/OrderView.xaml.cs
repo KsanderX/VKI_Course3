@@ -27,8 +27,6 @@ namespace Demo_Shoes.VIews
 
             BoxOrder.MouseDoubleClick -= BoxOrder_MouseDoubleClick;
 
-            panelCRUD.Visibility = Visibility.Collapsed;
-
             if (_currentUser != null && _currentUser.FkUserRoleNavigation != null)
             {
                 if (_currentUser.FkUserRoleNavigation.Name == "Администратор")

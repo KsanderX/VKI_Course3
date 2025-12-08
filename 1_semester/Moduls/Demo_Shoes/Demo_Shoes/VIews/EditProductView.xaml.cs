@@ -115,11 +115,30 @@ namespace Demo_Shoes.VIews
             {
                 string nameInput = tbName.Text.Trim(); int productNameId;
                 var existingName = _context.ProductNames.FirstOrDefault(n => n.Name.ToLower() == nameInput.ToLower());
-                if (existingName != null) { productNameId = existingName.Id; }
-                else { ProductName newNameEntity = new ProductName { Name = nameInput }; int newNameId = 1; if (_context.ProductNames.Any()) newNameId = _context.ProductNames.Max(x => x.Id) + 1; newNameEntity.Id = newNameId; _context.ProductNames.Add(newNameEntity); _context.SaveChanges(); productNameId = newNameId; }
+                if (existingName != null) 
+                {
+                    productNameId = existingName.Id;
+                }
+                else
+                { 
+                    ProductName newNameEntity = new ProductName { Name = nameInput };
+                    int newNameId = 1;
+                    if (_context.ProductNames.Any()) newNameId = _context.ProductNames.Max(x => x.Id) + 1;
+                    newNameEntity.Id = newNameId;
+                    _context.ProductNames.Add(newNameEntity);
+                    _context.SaveChanges();
+                    productNameId = newNameId;
+                }
                 _currentProduct.FkProductName = productNameId;
 
-                _currentProduct.FkProductCategory = (int?)CbCategory.SelectedValue; _currentProduct.FkManufacturer = (int?)CbManufacturer.SelectedValue; _currentProduct.FkSupplier = (int?)CbSupplier.SelectedValue; _currentProduct.FkUnit = (int?)CbUnit.SelectedValue; _currentProduct.Price = (double)price; _currentProduct.CountOnStorage = count; _currentProduct.Discount = discount; _currentProduct.Description = TbDescription.Text;
+                _currentProduct.FkProductCategory = (int?)CbCategory.SelectedValue; 
+                _currentProduct.FkManufacturer = (int?)CbManufacturer.SelectedValue;
+                _currentProduct.FkSupplier = (int?)CbSupplier.SelectedValue; 
+                _currentProduct.FkUnit = (int?)CbUnit.SelectedValue;
+                _currentProduct.Price = (double)price;
+                _currentProduct.CountOnStorage = count;
+                _currentProduct.Discount = discount;
+                _currentProduct.Description = TbDescription.Text;
 
                 if (_newPhotoPath != null)
                 {
@@ -141,10 +160,10 @@ namespace Demo_Shoes.VIews
             catch (Exception ex) { MessageBox.Show("Ошибка БД: " + ex.Message); }
         }
 
-        private void BtnCancel_Click(object sender, RoutedEventArgs e) 
-        { 
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        {
             DialogResult = false;
-            Close(); 
+            Close();
         }
     }
 }

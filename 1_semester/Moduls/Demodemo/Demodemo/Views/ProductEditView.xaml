@@ -1,0 +1,66 @@
+﻿<Window x:Class="Demodemo.Views.ProductEditView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demodemo.Views"
+        mc:Ignorable="d"
+        Title="Рдеактирование товара" Height="700" Width="800">
+    <Grid Margin="0,0,0,-80">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="Фото:" FontSize="18"/>
+            <Image MaxHeight="200" MaxWidth="300" x:Name="imageName"/>
+            <Button Height="30" Content="Выбрать фото" Click="btnLoadPhoto_Click"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Width="300" >
+            <TextBlock Text="ID:" FontSize="18"/>
+            <TextBox Text="{Binding SelectedProduct.Id}" IsReadOnly="True" FontSize="18" Height="30" x:Name="tbId"/>
+            <TextBlock Text="Артикул:" FontSize="18"/>
+            <TextBox Text="{Binding SelectedProduct.Article}" FontSize="18" Height="30" x:Name="tbArticle"/>
+
+            <TextBlock Text="Описание:" FontSize="18"/>
+            <TextBox Text="{Binding SelectedProduct.Description}" FontSize="18" Height="30" x:Name="tbDescription"/>
+
+            <TextBlock Text="Цена:" FontSize="18"/>
+            <TextBox Text="{Binding SelectedProduct.Price}" FontSize="18" Height="30" x:Name="tbPrice"/>
+
+            <TextBlock Text="Количество:" FontSize="18"/>
+            <TextBox Text="{Binding SelectedProduct.CountOnStorage}" FontSize="18" Height="30" x:Name="tbQuantity"/>
+
+            <TextBlock Text="Скидка:" FontSize="18"/>
+            <TextBox Text="{Binding SelectedProduct.Discount}" FontSize="18" Height="30" x:Name="tbDiscount"/>
+
+            <TextBlock Text="Имя продукта:" FontSize="18" />
+            <ComboBox x:Name="cbProductNames" Height="30" DisplayMemberPath="Name" SelectedValuePath="Id"
+                      SelectedValue="{Binding SelectedProduct.FkProductName}"/>
+
+            <TextBlock Text="Категория продукта:" FontSize="18"/>
+            <ComboBox x:Name="cbCategory" Height="30" DisplayMemberPath="Name" SelectedValuePath="Id"
+                       SelectedValue="{Binding SelectedProduct.FkProductCategory}"/>
+
+            <TextBlock Text="Производитель:" FontSize="18"/>
+            <ComboBox x:Name="cbSuppliers" Height="30" DisplayMemberPath="Name" SelectedValuePath="Id"
+                      SelectedValue="{Binding SelectedProduct.FkSupplier}" />
+
+            <TextBlock Text="Поставщик:" FontSize="18"/>
+            <ComboBox x:Name="cbProviders" Height="30" DisplayMemberPath="Name" SelectedValuePath="Id"
+                       SelectedValue="{Binding SelectedProduct.FkManufacturer}"/>
+
+            <TextBlock Text="Единица измерения:" FontSize="18"/>
+            <ComboBox x:Name="cbUnits" Height="30" DisplayMemberPath="Name" SelectedValuePath="Id"
+                       SelectedValue="{Binding SelectedProduct.FkUnit}" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="281">
+                <Button FontSize="16" Margin="5" Height="30" Width="150" Content="Сохранить продукт" Click="btnSaveProduct" />
+                <Button Margin="5" FontSize="16" Height="30" Width="100" Content="Отмена" Name="btnExit" Click="btnExit_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

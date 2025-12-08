@@ -63,13 +63,12 @@
 
             <!--правый компонент-->
             <Border Grid.Column="2" BorderBrush="Black" x:Name="BorderDiscount" BorderThickness="2" >
-                <TextBlock   FontSize="24"
+                <TextBlock FontSize="24"
 				 VerticalAlignment="Center"
 				 HorizontalAlignment="Center">
                     <Run Text="{Binding Discount}"/>
                     <Run Text="%"/>
-                </TextBlock>
-                
+                </TextBlock>                
             </Border>
         </Grid>
     </Border>

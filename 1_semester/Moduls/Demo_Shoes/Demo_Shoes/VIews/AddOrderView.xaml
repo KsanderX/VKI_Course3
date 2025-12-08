@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Demo_Shoes.VIews"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="AddOrderView" Height="450" Width="800">
+        Title="Добавление заказа" Height="450" Width="800">
     <StackPanel>
         <TextBlock Text="Номер заказа (Артикул):"/>
         <TextBox x:Name="TbOrderNumber" Margin="0,0,0,10"/>

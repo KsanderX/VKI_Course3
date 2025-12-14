@@ -13,11 +13,11 @@
                 <Run Text="Добро пожаловать:" />
                 <Run Name="runFIO"/>
             </TextBlock>
-            <Button Content="Выйти" Width="80" Height="30" Click="btnExit_Click"/>
+            <Button Background="#00FA9A" Content="Выйти" Width="80" Height="30" Click="btnExit_Click"/>
             <StackPanel/>
         </DockPanel>
 
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" x:Name="spFind">
+        <StackPanel Background="#7FFF00" Orientation="Horizontal" DockPanel.Dock="Top" x:Name="spFind">
             <TextBlock Text="Поиск"/>
             <TextBox Width="100" Margin="10 0 0 0" Name="tbFind" TextChanged="tbFind_TextChanged"/>
 
@@ -30,8 +30,8 @@
         <StackPanel/>
 
         <StackPanel Name="spCRUID" DockPanel.Dock="Bottom" Orientation="Horizontal" >
-            <Button Content="Добавить товар" Width="100" Height="30" Margin="5" Name="btnAddProduct" Click="btnAddProduct_Click" />
-            <Button Content="Удалить товар" Width="100" Height="30" Margin="5" Name="btnDeleteProduct" Click="btnDeleteProduct_Click"/>
+            <Button Background="#00FA9A" Content="Добавить товар" Width="100" Height="30" Margin="5" Name="btnAddProduct" Click="btnAddProduct_Click" />
+            <Button Background="#00FA9A" Content="Удалить товар" Width="100" Height="30" Margin="5" Name="btnDeleteProduct" Click="btnDeleteProduct_Click"/>
         </StackPanel>
 
 

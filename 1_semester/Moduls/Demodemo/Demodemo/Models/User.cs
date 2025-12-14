@@ -19,3 +19,6 @@ public partial class User
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }
+
+
+//Scaffold-DbContext "Server=server;DataBase=DB;Trust Server Certificate=True; Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models

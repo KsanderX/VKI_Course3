@@ -1,0 +1,22 @@
+﻿<Window x:Class="AI_Demo.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AI_Demo"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Авторизация" Height="450" Width="800">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" Margin="50">
+            <TextBlock Text="Логин"/>
+            <TextBox x:Name="txtLogin" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Пароль"/>
+            <PasswordBox x:Name="psbPassword" Margin="0,0,0,20"/>
+
+            <Button Content="Войти" Click="BtnLogin_Click" Height="30" Margin="0,0,0,10"/>
+            <Button Content="Войти как Гость" Click="BtnGuest_Click" Height="30"/>
+        </StackPanel>
+    </Grid>
+</Window>

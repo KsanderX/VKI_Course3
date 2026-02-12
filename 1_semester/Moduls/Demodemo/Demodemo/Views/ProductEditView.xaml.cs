@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Demodemo.Models;
-using Demodemo.ViewModel;
 using Microsoft.Win32;
 
 namespace Demodemo.Views

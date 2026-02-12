@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Demodemo.Models;
+namespace AI_Demo.Models;
 
 public partial class User
 {
